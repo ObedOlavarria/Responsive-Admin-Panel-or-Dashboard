@@ -2,7 +2,7 @@ import 'package:admin/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
+// Widget que representa la cabecera del dashboard
 class Header extends StatelessWidget {
   const Header({
     Key? key,
@@ -11,18 +11,20 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      // Disposición horizontal de los elementos
       children: [
-          Text(
-            "Dashboard",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        Expanded(child: SearchField()),
-        ProfileCard()
+        Text(
+          "Dashboard", // Título de la cabecera
+          style: Theme.of(context).textTheme.titleLarge, // Estilo del título
+        ),
+        Expanded(child: SearchField()), // Campo de búsqueda expandido
+        ProfileCard() // Tarjeta de perfil
       ],
     );
   }
 }
 
+// Widget que representa la tarjeta de perfil
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
     Key? key,
@@ -31,32 +33,31 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: defaultPadding),
-      padding: EdgeInsets.symmetric(
-      ),
+      margin: EdgeInsets.only(left: defaultPadding), // Margen izquierdo
+      padding: EdgeInsets.symmetric(), // Padding simétrico
       decoration: BoxDecoration(
-
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: Border.all(color: Colors.white10),
+        borderRadius: const BorderRadius.all(Radius.circular(10)), // Bordes redondeados
+        border: Border.all(color: Colors.white10), // Borde con color y opacidad
       ),
       child: Row(
+        // Disposición horizontal de los elementos
         children: [
           Image.asset(
-            "assets/images/profile_pic.png",
-            height: 38,
+            "assets/images/profile_pic.png", // Imagen de perfil
+            height: 38, // Altura de la imagen
           ),
-            Padding(
-              padding:
-                   EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Jolie"),
-            ),
-          Icon(Icons.keyboard_arrow_down),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2), // Padding horizontal
+            child: Text("Angelina Jolie"), // Nombre del usuario
+          ),
+          Icon(Icons.keyboard_arrow_down), // Icono de flecha hacia abajo
         ],
       ),
     );
   }
 }
 
+// Widget que representa el campo de búsqueda
 class SearchField extends StatelessWidget {
   const SearchField({
     Key? key,
@@ -66,21 +67,19 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: "Search",
-
-        filled: true,
+        hintText: "Search", // Texto de sugerencia
+        filled: true, // Fondo relleno
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide.none, // Sin borde
+          borderRadius: const BorderRadius.all(Radius.circular(10)), // Bordes redondeados
         ),
         suffixIcon: InkWell(
-          onTap: () {},
+          onTap: () {}, // Acción al hacer clic
           child: Container(
             decoration: BoxDecoration(
-
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)), // Bordes redondeados
             ),
-            child: SvgPicture.asset("assets/icons/Search.svg"),
+            child: SvgPicture.asset("assets/icons/Search.svg"), // Icono de búsqueda
           ),
         ),
       ),

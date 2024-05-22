@@ -1,31 +1,30 @@
-// This is a basic Flutter widget test.
+// Este es un test básico de widgets en Flutter.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// Para realizar una interacción con un widget en tu test, usa WidgetTester
+// del paquete flutter_test. Por ejemplo, puedes enviar gestos de tap y scroll.
+// También puedes usar WidgetTester para encontrar widgets hijos en el árbol de widgets,
+// leer texto, y verificar que los valores de las propiedades de los widgets sean correctos.
 
-import 'package:admin/main.dart';
+import 'package:admin/main.dart'; // Importa el punto de entrada de la aplicación
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-//import 'package:responsive_app/main.dart';
-
 void main() {
+  // Define una prueba de widgets
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+    // Construye la aplicación y dispara un frame.
     await tester.pumpWidget(MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verifica que nuestro contador empieza en 0.
+    expect(find.text('0'), findsOneWidget); // Busca el texto '0' en el árbol de widgets
+    expect(find.text('1'), findsNothing); // Verifica que el texto '1' no está presente
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Toca el icono '+' y dispara un frame.
+    await tester.tap(find.byIcon(Icons.add)); // Simula un tap en el icono '+'
+    await tester.pump(); // Redibuja el frame después de la interacción
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verifica que nuestro contador ha incrementado.
+    expect(find.text('0'), findsNothing); // Verifica que el texto '0' ya no está presente
+    expect(find.text('1'), findsOneWidget); // Busca el texto '1' en el árbol de widgets
   });
 }

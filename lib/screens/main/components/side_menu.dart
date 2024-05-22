@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// Widget que representa el menú lateral
 class SideMenu extends StatelessWidget {
   const SideMenu({
     Key? key,
@@ -9,15 +10,18 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      // Menú lateral deslizable
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
+            // Encabezado del menú
+            child: Image.asset("assets/images/logo.png"), // Logo de la aplicación
           ),
+          // Elementos de la lista del menú
           DrawerListTile(
-            title: "Dashboard",
-            svgSrc: "assets/icons/menu_dashboard.svg",
-            press: () {},
+            title: "Dashboard", // Título del elemento
+            svgSrc: "assets/icons/menu_dashboard.svg", // Icono SVG del elemento
+            press: () {}, // Acción al hacer clic
           ),
           DrawerListTile(
             title: "Transaction",
@@ -60,13 +64,13 @@ class SideMenu extends StatelessWidget {
   }
 }
 
+// Widget que representa un elemento de la lista del menú
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
     Key? key,
-    // For selecting those three line once press "Command+D"
-    required this.title,
-    required this.svgSrc,
-    required this.press,
+    required this.title, // Título del elemento
+    required this.svgSrc, // Icono SVG del elemento
+    required this.press, // Acción al hacer clic
   }) : super(key: key);
 
   final String title, svgSrc;
@@ -75,16 +79,16 @@ class DrawerListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: press,
-      horizontalTitleGap: 0.0,
+      onTap: press, // Acción al hacer clic
+      horizontalTitleGap: 0.0, // Espacio horizontal entre el icono y el texto
       leading: SvgPicture.asset(
-        svgSrc,
-        colorFilter: ColorFilter.mode(Colors.white54, BlendMode.srcIn),
-        height: 16,
+        svgSrc, // Icono SVG
+        colorFilter: ColorFilter.mode(Colors.white54, BlendMode.srcIn), // Filtro de color
+        height: 16, // Altura del icono
       ),
       title: Text(
-        title,
-        style: TextStyle(color: Colors.white54),
+        title, // Título del elemento
+        style: TextStyle(color: Colors.white54), // Estilo del texto
       ),
     );
   }
