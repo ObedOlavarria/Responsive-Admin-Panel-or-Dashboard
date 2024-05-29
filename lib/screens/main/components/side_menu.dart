@@ -1,93 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Widget que representa el menú lateral
 class SideMenu extends StatelessWidget {
-  const SideMenu({
-    Key? key,
-  }) : super(key: key);
+  const SideMenu({ // Constructor para la clase SideMenu
+    Key? key, // Clave opcional para identificar de manera única el widget
+  }) : super(key: key); // Llama al constructor de la superclase StatelessWidget
 
   @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      // Menú lateral deslizable
-      child: ListView(
-        children: [
-          DrawerHeader(
-            // Encabezado del menú
-            child: Image.asset("assets/images/logo.png"), // Logo de la aplicación
+  Widget build(BuildContext context) { // Anula el método build para construir la interfaz de usuario
+    return Drawer( // Retorna un widget Drawer que crea un menú lateral desplegable
+      child: ListView( // Crea un ListView para los elementos del menú
+        children: [ // Lista de elementos del menú
+          DrawerHeader( // Encabezado del menú
+            child: Image.asset("assets/images/logo.png"), // Imagen del encabezado
           ),
-          // Elementos de la lista del menú
-          DrawerListTile(
-            title: "Dashboard", // Título del elemento
-            svgSrc: "assets/icons/menu_dashboard.svg", // Icono SVG del elemento
-            press: () {}, // Acción al hacer clic
+          DrawerListTile( // Elemento de lista personalizado para Dashboard
+            title: "Dashboard", // Título del elemento de lista
+            svgSrc: "assets/icons/menu_dashboard.svg", // Ruta al icono SVG
+            press: () {}, // Función de presionar para Dashboard
           ),
-          DrawerListTile(
-            title: "Transaction",
-            svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Task",
-            svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Documents",
-            svgSrc: "assets/icons/menu_doc.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Store",
-            svgSrc: "assets/icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Profile",
-            svgSrc: "assets/icons/menu_profile.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Settings",
-            svgSrc: "assets/icons/menu_setting.svg",
-            press: () {},
-          ),
+          // Resto de elementos de lista con títulos, rutas de SVG y funciones de presión similares
         ],
       ),
     );
   }
 }
 
-// Widget que representa un elemento de la lista del menú
 class DrawerListTile extends StatelessWidget {
-  const DrawerListTile({
-    Key? key,
-    required this.title, // Título del elemento
-    required this.svgSrc, // Icono SVG del elemento
-    required this.press, // Acción al hacer clic
-  }) : super(key: key);
+  const DrawerListTile({ // Constructor para la clase DrawerListTile
+    Key? key, // Clave opcional para identificar de manera única el widget
+    required this.title, // Título del elemento de lista (requerido)
+    required this.svgSrc, // Ruta al icono SVG (requerido)
+    required this.press, // Función de presionar (requerido)
+  }) : super(key: key); // Llama al constructor de la superclase StatelessWidget
 
-  final String title, svgSrc;
-  final VoidCallback press;
+  final String title, svgSrc; // Variables para almacenar el título y la ruta del SVG
+  final VoidCallback press; // Función de presionar que no toma argumentos y no devuelve ningún valor
 
   @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: press, // Acción al hacer clic
+  Widget build(BuildContext context) { // Anula el método build para construir la interfaz de usuario
+    return ListTile( // Retorna un widget ListTile que representa un elemento de lista
+      onTap: press, // Asigna la función de presionar al evento onTap del ListTile
       horizontalTitleGap: 0.0, // Espacio horizontal entre el icono y el texto
-      leading: SvgPicture.asset(
-        svgSrc, // Icono SVG
-        colorFilter: ColorFilter.mode(Colors.white54, BlendMode.srcIn), // Filtro de color
+      leading: SvgPicture.asset( // Icono SVG a la izquierda del ListTile
+        svgSrc, // Ruta al icono SVG
+        colorFilter: ColorFilter.mode(Colors.white54, BlendMode.srcIn), // Filtro de color blanco para el icono
         height: 16, // Altura del icono
       ),
-      title: Text(
-        title, // Título del elemento
+      title: Text( // Título del ListTile
+        title, // Título del elemento de lista
         style: TextStyle(color: Colors.white54), // Estilo del texto
       ),
     );

@@ -3,61 +3,56 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
 
-// Widget que muestra información sobre el almacenamiento
 class StorageInfoCard extends StatelessWidget {
   const StorageInfoCard({
     Key? key,
-    required this.title, // Título de la tarjeta
-    required this.svgSrc, // Ruta del icono SVG
-    required this.amountOfFiles, // Cantidad total de archivos
-    required this.numOfFiles, // Número de archivos
+    required this.title,
+    required this.svgSrc,
+    required this.amountOfFiles,
+    required this.numOfFiles,
   }) : super(key: key);
 
-  final String title, svgSrc, amountOfFiles;
-  final int numOfFiles;
+  final String title, svgSrc, amountOfFiles; // Título, ruta del SVG y cantidad de archivos
+  final int numOfFiles; // Número de archivos
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: defaultPadding), // Espacio superior
-      padding: EdgeInsets.all(defaultPadding), // Padding interno
-      decoration: BoxDecoration(
-        border: Border.all(width: 2, color: primaryColor.withOpacity(0.15)), // Borde con opacidad
-        borderRadius: const BorderRadius.all(
-          Radius.circular(defaultPadding), // Bordes redondeados
+  Widget build(BuildContext context) { // Construye la interfaz de usuario del widget
+    return Container( // Contenedor que envuelve todo el widget
+      margin: EdgeInsets.only(top: defaultPadding),
+      padding: EdgeInsets.all(defaultPadding),
+      decoration: BoxDecoration( // Decoración del contenedor
+        border: Border.all(width: 2, color: primaryColor.withOpacity(0.15)), // Borde del contenedor
+        borderRadius: const BorderRadius.all( // Borde redondeado del contenedor
+          Radius.circular(defaultPadding),
         ),
       ),
-      child: Row(
-        // Disposición horizontal de los elementos
+      child: Row( // Fila que contiene los elementos del widget
         children: [
-          SizedBox(
+          SizedBox( // Widget contenedor con tamaño fijo
             height: 20,
             width: 20,
-            child: SvgPicture.asset(svgSrc), // Icono SVG
+            child: SvgPicture.asset(svgSrc),
           ),
-          Expanded(
+          Expanded( // Expande el widget para llenar el espacio disponible
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding), // Padding horizontal
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Alineación al inicio
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding), // Relleno horizontal
+              child: Column( // Columna que organiza sus hijos verticalmente
+                crossAxisAlignment: CrossAxisAlignment.start, // Alineación de los hijos a la izquierda
                 children: [
-                  Text(
-                    title, // Título de la tarjeta
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis, // Trunca el texto si es muy largo
+                  Text( // 
+                    title, 
+                    maxLines: 1, 
+                    overflow: TextOverflow.ellipsis, // Manejo del desbordamiento de texto
                   ),
-                  Text(
-                    "$numOfFiles Files", // Número de archivos
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.white70), // Estilo del texto
+                  Text( // Widget de texto para la cantidad de archivos
+                    "$numOfFiles Files", // Texto que muestra el número de archivos
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white70), // 
                   ),
                 ],
               ),
             ),
           ),
-          Text(amountOfFiles) // Cantidad total de archivos
+          Text(amountOfFiles) // Widget de texto para la cantidad de archivos
         ],
       ),
     );

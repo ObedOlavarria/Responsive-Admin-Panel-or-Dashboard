@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
+import 'chart.dart';
 import 'storage_info_card.dart';
 
-// Widget que muestra los detalles de almacenamiento
 class StorageDetails extends StatelessWidget {
   const StorageDetails({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(defaultPadding), // Añade padding alrededor del contenido
-      decoration: BoxDecoration(
+  Widget build(BuildContext context) { // Construye la interfaz de usuario del widget
+    return Container( // Contenedor que envuelve todo el widget
+      padding: EdgeInsets.all(defaultPadding), // Relleno en todos los lados
+      decoration: BoxDecoration( // Decoración del contenedor
         color: secondaryColor, // Color de fondo del contenedor
-        borderRadius: const BorderRadius.all(Radius.circular(10)), // Bordes redondeados
+        borderRadius: const BorderRadius.all(Radius.circular(10)), // Borde redondeado del contenedor
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Alinea al inicio del eje vertical
+      child: Column( // Columna que organiza sus hijos verticalmente
+        crossAxisAlignment: CrossAxisAlignment.start, // Alineación de los hijos a la izquierda
         children: [
-          Text(
-            "Storage Details", // Título de la sección
-            style: TextStyle(
-              fontSize: 18, // Tamaño de fuente del título
-              fontWeight: FontWeight.w500, // Peso de fuente del título
+          Text( 
+            "Storage Details", 
+            style: TextStyle( 
+              fontSize: 18, 
+              fontWeight: FontWeight.w500, 
             ),
           ),
-          SizedBox(height: defaultPadding), // Espacio vertical entre elementos
-          StorageInfoCard(
-            svgSrc: "assets/icons/Documents.svg", // Ruta del icono SVG
-            title: "Documents Files", // Título de la tarjeta
-            amountOfFiles: "1.3GB", // Tamaño de los archivos
-            numOfFiles: 1328, // Número de archivos
+          SizedBox(height: defaultPadding), // Espacio entre el título y el gráfico
+          Chart(), // Widget del gráfico
+          StorageInfoCard( // Widget de la tarjeta de información de almacenamiento
+            svgSrc: "assets/icons/Documents.svg", 
+            title: "Documents Files", 
+            amountOfFiles: "1.3GB", 
+            numOfFiles: 1328, 
           ),
+          // Tarjetas de información de almacenamiento adicionales con títulos, cantidades de archivos y números de archivos diferentes
           StorageInfoCard(
             svgSrc: "assets/icons/media.svg",
             title: "Media Files",

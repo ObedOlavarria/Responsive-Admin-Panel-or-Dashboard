@@ -1,40 +1,47 @@
-import 'package:admin/screens/dashboard/components/storage_details.dart';
+import 'package:admin/responsive.dart';
+import 'package:admin/screens/dashboard/components/my_fields.dart';
 import 'package:flutter/material.dart';
+
 import '../../constants.dart';
 import 'components/header.dart';
 
-// Pantalla del Dashboard principal
+import 'components/recent_files.dart';
+import 'components/storage_details.dart';
+
 class DashboardScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      // SafeArea asegura que el contenido no se solape con áreas inseguras
-      child: SingleChildScrollView(
-        // Permite que la pantalla sea desplazable si el contenido es extenso
-        primary: false,
-        padding: EdgeInsets.all(defaultPadding), // Añade padding alrededor del contenido
+  Widget build(BuildContext context) { // Construye la interfaz de usuario
+    return SafeArea( // Crea un área segura para evitar el área de recorte
+      child: SingleChildScrollView( // Crea un widget desplazable verticalmente
+        primary: false, // Indica que este widget no es el widget secundario principal
+        padding: EdgeInsets.all(defaultPadding), // Establece el relleno en todos los lados
         child: Column(
-          // Disposición vertical de los elementos
-          children: [
-            Header(), // Componente de cabecera
-            SizedBox(height: defaultPadding), // Espacio entre la cabecera y la siguiente fila
-            Row(
-              // Disposición horizontal de los elementos
-              crossAxisAlignment: CrossAxisAlignment.start, // Alinea los hijos al inicio del eje vertical
-              children: [
-                Expanded(
-                  // El primer hijo ocupa 5 partes del espacio disponible
+          children: [ // Lista de widgets hijos de la columna
+            Header(), // Muestra el encabezado de la página
+            SizedBox(height: defaultPadding), // Espacio entre el encabezado y los elementos siguientes
+            Row( // Crea una fila horizontal de widgets
+              crossAxisAlignment: CrossAxisAlignment.start, // Alinea los elementos de la fila en la parte superior
+              children: [ // Lista de widgets hijos de la fila
+                Expanded( // Expande el widget para llenar el espacio disponible
                   flex: 5,
                   child: Column(
-                    // Se pueden añadir más widgets en esta columna
-                    children: [],
+                    children: [
+                      MyFiles(), // Muestra los archivos del usuario
+                      SizedBox(height: defaultPadding),
+                      RecentFiles(), 
+                      if (Responsive.isMobile(context))
+                        SizedBox(height: defaultPadding), // Espacio adicional en dispositivos móviles
+                      if (Responsive.isMobile(context)) StorageDetails(), // Muestra detalles de almacenamiento en dispositivos móviles
+                    ],
                   ),
                 ),
-                Expanded(
-                  // El segundo hijo ocupa 2 partes del espacio disponible
-                  flex: 2,
-                  child: StorageDetails(), // Componente que muestra detalles de almacenamiento
-                ),
+                if (!Responsive.isMobile(context)) // Condición para no mostrar un widget en dispositivos móviles
+                  SizedBox(width: defaultPadding), // Espacio entre los elementos en dispositivos de escritorio
+                if (!Responsive.isMobile(context)) // Condición para no mostrar un widget en dispositivos móviles
+                  Expanded( // Expande el widget para llenar el espacio disponible
+                    flex: 2,
+                    child: StorageDetails(), // Muestra detalles de almacenamiento en dispositivos de escritorio
+                  ),
               ],
             )
           ],
